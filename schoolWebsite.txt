@@ -1,0 +1,12 @@
+1. logo
+navbar ( home,about ,contact,gallery) on seprate pages  with more information 
+font awseome, google fonts,bootstrap,good footer ,light colour 
+ add a button at the bottom that can take you to the top of the back if youve to far to the bottom 
+ there should also be aform , like contact and registration form
+ make use of local storage for the form to get your input 
+ js should be 60 percent 
+
+ requirment and planning 
+ implementation
+ testing
+ deploy with vercel,github or 
