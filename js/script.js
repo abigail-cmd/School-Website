@@ -199,3 +199,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
  
+
+
+// ===== About Page Dynamic Cards =====
+const curriculumData = [
+  { title: "Interactive Lessons" },
+  { title: "After-school Clubs" },
+  { title: "Sports & Arts" },
+  { title: "STEM Workshops" },
+  { title: "Community Service" }
+];
+
+const curriculumContainer = document.getElementById("curriculumHighlights");
+
+if (curriculumContainer) {
+  curriculumData.forEach((item, i) => {
+    const col = document.createElement("div");
+    col.className = "col-md-4";
+    col.setAttribute("data-aos", "flip-left");
+    col.setAttribute("data-aos-delay", i * 100);
+    col.innerHTML = `<div class="info-card p-3 shadow-sm">${item.title}</div>`;
+    curriculumContainer.appendChild(col);
+  });
+}
+ 
