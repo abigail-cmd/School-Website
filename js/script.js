@@ -143,4 +143,59 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const features = [
+    {
+      icon: "fa-graduation-cap",
+      title: "Academic Excellence",
+      desc: "Strong curriculum with experienced teachers and modern classrooms."
+    },
+    {
+      icon: "fa-flask",
+      title: "STEM Labs",
+      desc: "Hands-on science and computer labs to spark innovation."
+    },
+    {
+      icon: "fa-heart",
+      title: "Pastoral Care",
+      desc: "Supportive environment that cares for every student's wellbeing."
+    },
+    {
+      icon: "fa-football",
+      title: "Sports",
+      desc: "Our sports program promotes fitness, teamwork, and school spirit."
+    },
+    {
+      icon: "fa-bowl-food",
+      title: "Food",
+      desc: "Nutritious meals that support health and academic performance."
+    },
+    {
+      icon: "fa-wheelchair-move",
+      title: "Inclusion",
+      desc: "Inclusive environment with equal opportunities for all learners."
+    }
+  ];
 
+  const featuresRow = document.getElementById("featuresRow");
+
+  features.forEach((item, i) => {
+    const col = document.createElement("div");
+    col.className = "col-md-4";
+    col.setAttribute("data-aos", "zoom-in");
+    col.setAttribute("data-aos-delay", i * 100);
+
+    col.innerHTML = `
+      <div class="card h-100 shadow-sm hover-lift">
+        <div class="card-body text-center">
+          <i class="fa-solid ${item.icon} fa-2x mb-3"></i>
+          <h5>${item.title}</h5>
+          <p>${item.desc}</p>
+        </div>
+      </div>
+    `;
+
+    featuresRow.appendChild(col);
+  });
+});
+ 
