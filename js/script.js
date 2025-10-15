@@ -100,3 +100,47 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if (href.length>1) { e.preventDefault(); document.querySelector(href)?.scrollIntoView({behavior:'smooth'}); }
   });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryContainer = document.getElementById("gallery");
+
+  const galleryItems = [
+    { src: "assets/gallery/lab1.jpg", caption: "Technical Laboratory" },
+    { src: "assets/gallery/lab2.jpg", caption: " State of the art libary" },
+    { src: "assets/gallery/lab3.jpg", caption: " 2024/2025 Graduation" },
+    { src: "assets/gallery/lab4.jpg", caption: "Music Auditorium" },
+    { src: "assets/gallery/lab5.jpg", caption: "Computer Lab" },
+    { src: "assets/gallery/lab6.jpg", caption: "Lecture Hall" },
+    { src: "assets/gallery/lab7.jpg", caption: " Recreation ground and Playpark" },
+    { src: "assets/gallery/lab8.jpg", caption: " Olympic Standard Swimming Pool" },
+    { src: "assets/gallery/lab9.jpg", caption: "Lunch Hall" },
+    { src: "assets/gallery/lab10.jpg", caption: "Track Field" },
+    { src: "assets/gallery/lab11.jpg", caption: "Greenhouse" },
+    { src: "assets/gallery/lab12.jpg", caption: "Co-curicular Activities" },
+
+
+  ];
+
+  galleryItems.forEach((item, index) => {
+    const delay = (index % 3) * 50;
+    const col = document.createElement("div");
+    col.className = "col-12 col-md-4";
+    col.setAttribute("data-aos", "zoom-in");
+    col.setAttribute("data-aos-delay", delay);
+
+    col.innerHTML = `
+      <div class="card shadow-sm hover-lift">
+        <img src="${item.src}" class="card-img-top" alt="${item.caption}">
+        <div class="card-body text-center">
+          <p class="mb-0 small">${item.caption}</p>
+        </div>
+      </div>
+    `;
+    galleryContainer.appendChild(col);
+  });
+});
+
+
+
