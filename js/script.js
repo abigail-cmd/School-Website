@@ -55,42 +55,102 @@ function showToast(message, timeout=2200){
 })();
 
 /* ---------- Registration form (register.html) ---------- */
-(function regModule(){
-  const form = document.getElementById('registerForm');
-  if (!form) return;
-  const firstName = document.getElementById('firstName');
-  const lastName = document.getElementById('lastName');
-  const dob = document.getElementById('dob');
-  const gender = document.getElementById('gender');
-  const guardian = document.getElementById('guardian');
-  const classFor = document.getElementById('classFor');
-  const notes = document.getElementById('notes');
-  const resetBtn = document.getElementById('regReset');
+// Dynamically load registration form fields
+const registerForm = document.getElementById("registerForm");
 
-  // load cached applications array
-  const applications = JSON.parse(localStorage.getItem('bf_applications') || '[]');
+const formFields = [
+  { label: "First name", id: "firstName", type: "text", col: "col-md-6", required: true },
+  { label: "Last name", id: "lastName", type: "text", col: "col-md-6", required: true },
+  { label: "Date of birth", id: "dob", type: "date", col: "col-md-6", required: true },
+  {
+    label: "Gender", id: "gender", type: "select", col: "col-md-6",
+    options: ["Female", "Male", "Other"]
+  },
+  { label: "Parent / Guardian contact", id: "guardian", type: "text", col: "col-md-6", required: true },
+  {
+    label: "Class applying for", id: "classFor", type: "select", col: "col-md-6",
+    options: ["Kindergarten", "Primary", "Junior Secondary", "Senior Secondary"]
+  },
+  { label: "Additional notes", id: "notes", type: "textarea", col: "col-12" }
+];
 
-  form.addEventListener('submit', (ev)=> {
-    ev.preventDefault();
-    const app = {
-      id: 'app_' + Date.now(),
-      firstName: firstName.value.trim(),
-      lastName: lastName.value.trim(),
-      dob: dob.value,
-      gender: gender.value,
-      guardian: guardian.value.trim(),
-      classFor: classFor.value,
-      notes: notes.value.trim(),
-      submittedAt: new Date().toISOString()
-    };
-    applications.push(app);
-    localStorage.setItem('bf_applications', JSON.stringify(applications));
-    showToast('Application saved locally. Thank you!');
-    form.reset();
-  });
+formFields.forEach(field => {
+  const div = document.createElement("div");
+  div.className = field.col;
 
-  resetBtn?.addEventListener('click', ()=> { form.reset(); showToast('Form cleared'); });
-})();
+  const label = document.createElement("label");
+  label.className = "form-label";
+  label.textContent = field.label;
+
+  let input;
+
+  if (field.type === "select") {
+    input = document.createElement("select");
+    input.className = "form-select";
+    input.id = field.id;
+    field.options.forEach(opt => {
+      const option = document.createElement("option");
+      option.textContent = opt;
+      input.appendChild(option);
+    });
+  } else if (field.type === "textarea") {
+    input = document.createElement("textarea");
+    input.className = "form-control";
+    input.id = field.id;
+    input.rows = 3;
+  } else {
+    input = document.createElement("input");
+    input.className = "form-control";
+    input.id = field.id;
+    input.type = field.type;
+  }
+
+  if (field.required) input.required = true;
+
+  div.appendChild(label);
+  div.appendChild(input);
+  registerForm.appendChild(div);
+});
+
+// Add Submit & Reset Buttons
+const btnDiv = document.createElement("div");
+btnDiv.className = "col-12 d-flex gap-2 mt-3";
+
+btnDiv.innerHTML = `
+  <button class="btn btn-success" type="submit">Submit Application</button>
+  <button id="regReset" type="button" class="btn btn-outline-secondary">Reset</button>
+`;
+
+registerForm.appendChild(btnDiv);
+
+// Handle Form Submission
+registerForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+
+  // Simple success card
+  const successDiv = document.createElement("div");
+  successDiv.className = "alert alert-success mt-3";
+  successDiv.textContent = `🎉 Registration successful! Welcome ${firstName} ${lastName}.`;
+
+  // Remove any existing success message before showing a new one
+  const oldAlert = document.querySelector(".alert-success");
+  if (oldAlert) oldAlert.remove();
+
+  registerForm.appendChild(successDiv);
+});
+
+// Handle Reset Button
+document.addEventListener("click", e => {
+  if (e.target.id === "regReset") {
+    registerForm.reset();
+    const oldAlert = document.querySelector(".alert-success");
+    if (oldAlert) oldAlert.remove();
+  }
+});
+
 
 /* ---------- Small UX niceties ---------- */
 // Smooth internal anchor scrolling
