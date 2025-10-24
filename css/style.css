@@ -27,6 +27,27 @@ body.light{ background: linear-gradient(180deg,#f8fbff 0%, #ffffff 100%); color:
 
 /* Footer */
 .footer{ background:linear-gradient(180deg,#ffffff, #f1f5f9); border-top:1px solid #eef2ff; }
+.footer p.small {color: #555;}
+.footer .text-center {margin-top: 10px;}
+
+.footer p.small {
+  color: #555; /* slightly muted text */
+}
+
+.footer-bottom {
+   /* light grey only for this line the background colour  */
+  padding: 10px 0;
+  border-top: 1px solid #ddd; /* optional soft border line */
+}
+
+.footer-bottom p {
+  color: #333;
+  margin: 0;
+}
+
+
+
+
 
 /* Back to top */
 #backToTop{ position:fixed; right:20px; bottom:20px; display:none; z-index:9999; border-radius:999px; padding:12px 14px; }
@@ -47,6 +68,73 @@ body.light{ background: linear-gradient(180deg,#f8fbff 0%, #ffffff 100%); color:
 }
 .hover-lift:hover img { transform: scale(1.05); }
 .card { border: none; border-radius: 10px; overflow: hidden; }
+
+
+/* Register pics  */
+.register-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-container {
+  display: flex;
+  width: 100%;
+  min-height: 80vh;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.register-media {
+  flex: 1;
+  overflow: hidden;
+}
+
+.register-media img,
+.register-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.register-form-area {
+  flex: 1;
+  background-color: #fff;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-form-area h2 {
+  font-weight: 600;
+  color: #333;
+}
+
+/* gallery video */
+.card video {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .register-container {
+    flex-direction: column;
+  }
+  .register-media {
+    height: 250px;
+  }
+  .register-form-area {
+    padding: 30px 20px;
+  }
+}
+
 
 
 /* Responsive tweaks */

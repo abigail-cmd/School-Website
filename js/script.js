@@ -36,6 +36,8 @@ function showToast(message, timeout = 2200) {
   }, timeout);
 }
 
+ console.log("no 5 works");
+
 // ===== Contact Form =====
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
@@ -121,6 +123,7 @@ if (contactForm) {
     }
   });
 }
+ console.log("no 3 works");
 
 // ===== Register Form =====
 const registerForm = document.getElementById("registerForm");
@@ -209,23 +212,31 @@ if (registerForm) {
   });
 }
 
+ console.log("no 2 works");
+
+
 // ===== Gallery =====
 const galleryContainer = document.getElementById("gallery");
+
 if (galleryContainer) {
   console.log("Gallery loaded");
   const galleryItems = [
-    { src: "assets/gallery/lab1.jpg", caption: "Technical Laboratory" },
-    { src: "assets/gallery/lab2.jpg", caption: "State of the Art Library" },
-    { src: "assets/gallery/lab3.jpg", caption: "2024/2025 Graduation" },
-    { src: "assets/gallery/lab4.jpg", caption: "Music Auditorium" },
-    { src: "assets/gallery/lab5.jpg", caption: "Computer Lab" },
-   { src: "assets/gallery/lab6.jpg", caption: "Lecture Hall" },
-    { src: "assets/gallery/lab7.jpg", caption: " Recreation ground and Playpark" },
-    { src: "assets/gallery/lab8.jpg", caption: " Olympic Standard Swimming Pool" },
-    { src: "assets/gallery/lab9.jpg", caption: "Lunch Hall" },
-    { src: "assets/gallery/lab10.jpg", caption: "Track Field" },
-    { src: "assets/gallery/lab11.jpg", caption: "Greenhouse" },
-    { src: "assets/gallery/lab12.jpg", caption: "Co-curicular Activities" },
+    // --- Images +v ---
+    { src: "assets/gallery/lab1.mp4", caption: "Technical Laboratory", type: "video" },
+    { src: "assets/gallery/events.mp4", caption: "State of the Art Library", type: "video" },
+    { src: "assets/gallery/lab3.jpg", caption: "2024/2025 Graduation", type: "image" },
+    { src: "assets/gallery/playground.mp4", caption: "Playground Fun", type: "video" },
+    { src: "assets/gallery/lab5.mp4", caption: "Computer Lab", type: "video" },
+    { src: "assets/gallery/class-session.mp4", caption: "Interactive Learning", type: "video" },
+
+    // --- Videos+I ---
+    { src: "assets/gallery/school-tour.mp4", caption: "Campus Tour", type: "video" },
+    { src: "assets/gallery/school-events.mp4", caption: "Cultural Day Highlights", type: "video" },
+    { src: "assets/gallery/sports-day.mp4", caption: "Sports Day Activities", type: "video" },
+    { src: "assets/gallery/lab6.mp4", caption: "Lecture Hall", type: "video" },
+    { src: "assets/gallery/graduation.mp4", caption: "Graduation Moments", type: "video" },
+    { src: "assets/gallery/lab4.mp4", caption: "Music Auditorium", type: "video" },
+
   ];
 
   galleryItems.forEach((item, index) => {
@@ -234,18 +245,34 @@ if (galleryContainer) {
     col.className = "col-12 col-md-4";
     col.setAttribute("data-aos", "zoom-in");
     col.setAttribute("data-aos-delay", delay);
+
+    // Dynamically insert media
+    const mediaElement =
+      item.type === "video"
+        ? `<video class="card-img-top" autoplay loop muted playsinline>
+             <source src="${item.src}" type="video/mp4">
+             Your browser does not support the video tag.
+           </video>`
+        : `<img src="${item.src}" class="card-img-top" alt="${item.caption}">`;
+
     col.innerHTML = `
       <div class="card shadow-sm hover-lift">
-        <img src="${item.src}" class="card-img-top" alt="${item.caption}">
-        <div class="card-body text-center"><p class="mb-0 small">${item.caption}</p></div>
+        ${mediaElement}
+        <div class="card-body text-center">
+          <p class="mb-0 small">${item.caption}</p>
+        </div>
       </div>
     `;
+
     galleryContainer.appendChild(col);
   });
 }
 
+console.log("gallery works")
 
 
+
+// Home page card area 
 document.addEventListener("DOMContentLoaded", () => {
   const features = [
     {
@@ -279,9 +306,10 @@ document.addEventListener("DOMContentLoaded", () => {
       desc: "Inclusive environment with equal opportunities for all learners."
     }
   ];
+console.log("home page works")
 
+  // Features area
   const featuresRow = document.getElementById("featuresRow");
-
   features.forEach((item, i) => {
     const col = document.createElement("div");
     col.className = "col-md-4";
@@ -297,12 +325,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     `;
-
     featuresRow.appendChild(col);
   });
 });
  
-
+console.log("features works ")
 
 // ===== About Page Dynamic Cards =====
 const curriculumData = [
@@ -326,8 +353,5 @@ if (curriculumContainer) {
   });
 }
  
-
- console.log("no 2 works");
-
 console.log("Script fully executed");
 
