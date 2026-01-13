@@ -352,6 +352,12 @@ if (curriculumContainer) {
     curriculumContainer.appendChild(col);
   });
 }
+
+// DARK MODE BUTTON 
+document.getElementById("themeToggle").addEventListener("click", function () {
+  document.body.classList.toggle("dark");
+});
+
  
 console.log("Script fully executed");
 
